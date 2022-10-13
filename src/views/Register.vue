@@ -37,11 +37,10 @@
 </template>
 
 <script>
-// import { db } from '@/firebaseInit';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase/firebaseInit';
-import { doc, setDoc, collection } from 'firebase/firestore';
-
+// import { initializeApp } from 'firebase/app';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase/firebaseInit';
 export default {
   name: 'Register',
   data() {
@@ -51,7 +50,7 @@ export default {
       username: '',
       email: '',
       password: '',
-      error: '',
+      error: null,
       errorMsg: '',
     };
   },
@@ -66,25 +65,20 @@ export default {
       ) {
         this.error = false;
         this.errorMsg = '';
+        const auth = getAuth();
         const createUser = await createUserWithEmailAndPassword(auth, this.email, this.password);
-        const result = await createUser;
-        const dataBase = collection(result, 'users');
-        // await dataBase.set({
-        //   firstName: this.firstName,
-        //   lastName: this.lastName,
-        //   userName: this.userName,
-        //   email: this.email,
-        // });
-        await setDoc(doc(dataBase, 'cities', 'LA'), {
-          name: 'Los Angeles',
-          state: 'CA',
-          country: 'USA',
+
+        await setDoc(doc(db, 'users', createUser.user.uid), {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          username: this.username,
+          email: this.email,
         });
-        this.$router.push({ name: Home });
+        this.$router.push({ name: 'Home' });
         return;
       }
       this.error = true;
-      this.errorMsg = 'Please fill out all the fields';
+      this.errorMsg = 'Please fill out all the fields!';
       return;
     },
   },

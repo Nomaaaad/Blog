@@ -11,6 +11,8 @@
 <script>
 import Navigation from './components/Navigation.vue';
 import Footer from './components/Footer.vue';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { db } from './firebase/firebaseInit';
 
 export default {
   name: 'app',
@@ -24,6 +26,7 @@ export default {
     };
   },
   created() {
+    this.getUser();
     this.checkRoute();
   },
   mounted() {},
@@ -34,6 +37,15 @@ export default {
         return;
       }
       this.navigatorDisabled = false;
+    },
+    getUser() {
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        this.$store.commit('updateUser', user);
+        if (user) {
+          this.$store.dispatch('getCurrentUser');
+        }
+      });
     },
   },
   watch: {
@@ -138,7 +150,7 @@ button,
   background-color: rgba(128, 128, 128, 0.5) !important;
 }
 
-.error{
+.error {
   text-align: center;
   font-size: 12px;
   color: red;
