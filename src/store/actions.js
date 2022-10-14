@@ -1,5 +1,5 @@
 import { db } from '../firebase/firebaseInit';
-import { getDoc, collection, doc } from 'firebase/firestore';
+import { getDoc, doc } from 'firebase/firestore';
 import { getAuth } from "firebase/auth";
 
 export default {

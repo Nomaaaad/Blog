@@ -38,6 +38,11 @@
 <script>
 export default {
   name: 'footer-vue',
+  computed: {
+    user() {
+      return this.$store.getters.profileData.user;
+    },
+  },
 };
 </script>
 

@@ -14,6 +14,7 @@ const store = createStore({
         { blogTitle: 'Blog Card #3', blogCoverPhoto: 'stock-3', blogDate: 'November 1, 2022' },
         { blogTitle: 'Blog Card #4', blogCoverPhoto: 'stock-4', blogDate: 'November 1, 2022' },
       ],
+      profileData: {
       editPost: null,
       user: null,
       profileEmail: null,
@@ -22,6 +23,7 @@ const store = createStore({
       profileUsername: null,
       profileId: null,
       profileInitials: null,
+      }
     }
   },
   mutations: rootMutations,

@@ -1,18 +1,19 @@
 <template>
   <div class="app-wrapper">
     <div class="app">
-      <Navigation v-if="!navigatorDisabled" />
-      <router-view />
-      <Footer v-if="!navigatorDisabled" />
+      <Navigation v-if="!navigatorDisabled"/>
+      <router-view/>
+      <Footer v-if="!navigatorDisabled"/>
     </div>
+
   </div>
 </template>
 
 <script>
 import Navigation from './components/Navigation.vue';
 import Footer from './components/Footer.vue';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { db } from './firebase/firebaseInit';
+import {getAuth, onAuthStateChanged} from 'firebase/auth';
+import {db} from './firebase/firebaseInit';
 
 export default {
   name: 'app',
@@ -29,7 +30,8 @@ export default {
     this.getUser();
     this.checkRoute();
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
     checkRoute() {
       if (this.$route.name === 'Login' || this.$route.name === 'Register' || this.$route.name === 'ForgotPassword') {
@@ -91,6 +93,7 @@ export default {
 .arrow {
   margin-left: 8px;
   width: 12px;
+
   path {
     fill: #000;
   }
@@ -135,15 +138,18 @@ button,
     margin-top: 0;
     margin-left: auto;
   }
+
   i {
     margin-left: 8px;
   }
 }
+
 .button-light {
   background-color: transparent;
   border: 2px solid #fff;
   color: #fff;
 }
+
 .button-inactive {
   pointer-events: none !important;
   cursor: none !important;

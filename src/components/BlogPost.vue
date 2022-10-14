@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-wrapper no-user">
+  <div class="blog-wrapper" :class="{'no-user': !user}">
     <div class="blog-content">
       <div>
         <h2 v-if="post.welcomeScreen">{{ post.title }}</h2>
@@ -30,6 +30,11 @@ export default {
       const path = `/src/assets/blogPhotos/${name}.jpg`;
       const modules = import.meta.globEager('/src/assets/blogPhotos/*.jpg');
       return modules[path].default;
+    },
+  },
+  computed: {
+    user() {
+      return this.$store.getters.profileData.user;
     },
   },
 };
