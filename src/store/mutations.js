@@ -16,5 +16,14 @@ export default {
   },
   updateUser(state, payload) {
     state.profileData.user = payload;
-  }
+  },
+  changeFirstName(state, payload) {
+    state.profileData.profileFirstName = payload;
+  },
+  changeLastName(state, payload) {
+    state.profileData.profileLastName = payload;
+  },
+  changeUsername(state, payload) {
+    state.profileData.profileUsername = payload;
+  },
 }
