@@ -12,9 +12,9 @@ export default {
     const docRef = await doc(db, "users", user.uid);
     const docSnap = await getDoc(docRef);
 
-
     context.commit('setProfileInfo', docSnap.data());
     context.commit('setProfileInitials');
+
   },
 
   async updateUserSettings(context) {

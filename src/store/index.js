@@ -23,7 +23,7 @@ const store = createStore({
         profileUsername: null,
         profileId: null,
         profileInitials: null,
-      }
+      },
     }
   },
   mutations: rootMutations,

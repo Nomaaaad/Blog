@@ -13,7 +13,6 @@
 import Navigation from './components/Navigation.vue';
 import Footer from './components/Footer.vue';
 import {getAuth, onAuthStateChanged} from 'firebase/auth';
-import {db} from './firebase/firebaseInit';
 
 export default {
   name: 'app',
